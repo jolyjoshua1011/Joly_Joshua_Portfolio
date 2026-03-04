@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Joly Joshua | Graphic Designer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cursor"></div>
+
+<nav>
+    <h1>JOLY JOSHUA</h1>
+    <ul>
+        <li>Accueil</li>
+        <li>Portfolio</li>
+        <li>Services</li>
+        <li>Contact</li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <img src="img/JJ_logo.png" alt="Logo Joly Joshua">
+    <h2 class="glitch" data-text="Graphic Designer">Graphic Designer</h2>
+    <p>Créateur d’identités visuelles modernes & futuristes</p>
+    <button class="btn">Découvrir</button>
+</section>
+
+<section>
+    <h2 class="section-title">Portfolio</h2>
+    <div class="grid">
+        <div class="card">Projet 01</div>
+        <div class="card">Projet 02</div>
+        <div class="card">Projet 03</div>
+        <div class="card">Projet 04</div>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">Services</h2>
+    <div class="grid">
+        <div class="card">Logo & Branding</div>
+        <div class="card">Design Social Media</div>
+        <div class="card">Affiches & Print</div>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">Contact</h2>
+    <form>
+        <input type="text" placeholder="Votre nom">
+        <input type="email" placeholder="Votre email">
+        <textarea rows="5" placeholder="Votre message"></textarea>
+        <button class="btn">Envoyer</button>
+    </form>
+</section>
+
+<footer>
+    © 2026 Joly Joshua - Tous droits réservés
+</footer>
+
+<script>
+
+/* Scroll animation */
+const cards = document.querySelectorAll(".card");
+
+window.addEventListener("scroll", () => {
+    cards.forEach(card => {
+        const position = card.getBoundingClientRect().top;
+        const screenHeight = window.innerHeight;
+
+        if(position < screenHeight - 100){
+            card.classList.add("show");
+        }
+    });
+});
+
+/* Curseur personnalisé */
+const cursor = document.querySelector(".cursor");
+
+document.addEventListener("mousemove", e => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+});
+
+/* Particules cyber */
+const canvas = document.createElement("canvas");
+document.body.appendChild(canvas);
+canvas.style.position = "fixed";
+canvas.style.top = 0;
+canvas.style.left = 0;
+canvas.style.zIndex = "-1";
+
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for(let i=0;i<80;i++){
+    particles.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        radius: Math.random()*2,
+        dx: (Math.random()-0.5)*1,
+        dy: (Math.random()-0.5)*1
+    });
+}
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle = "#7b00ff";
+    particles.forEach(p=>{
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if(p.x<0 || p.x>canvas.width) p.dx*=-1;
+        if(p.y<0 || p.y>canvas.height) p.dy*=-1;
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+</script>
+
+</body>
+</html>

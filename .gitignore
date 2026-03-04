@@ -1,0 +1,12 @@
+# Dossiers de dépendances
+node_modules/
+vendor/
+
+# Fichiers de configuration sensibles
+.env
+.DS_Store  # Fichiers système Mac
+*.log
+
+# Dossiers de build
+dist/
+build/
