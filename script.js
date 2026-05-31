@@ -1,71 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ================= HERO ANIMATION =================
-
-    const heroText = document.querySelector(".hero-text");
-    const heroImageContainer = document.querySelector(".hero-image");
-
-    if (heroText && heroImageContainer) {
-
-        heroText.style.opacity = "0";
-        heroText.style.transform = "translateX(-50px)";
-
-        heroImageContainer.style.opacity = "0";
-        heroImageContainer.style.transform = "translateX(50px)";
-
-        setTimeout(() => {
-            heroText.style.transition = "1s ease";
-            heroText.style.opacity = "1";
-            heroText.style.transform = "translateX(0)";
-        }, 200);
-
-        setTimeout(() => {
-            heroImageContainer.style.transition = "1s ease";
-            heroImageContainer.style.opacity = "1";
-            heroImageContainer.style.transform = "translateX(0)";
-        }, 400);
-    }
-
-    // ================= PROJECT REVEAL =================
-
-    const projectCards = document.querySelectorAll(".project-card");
-
-    projectCards.forEach(card => {
-        card.style.opacity = "0";
-        card.style.transform = "translateY(50px)";
-    });
-
-    const revealCards = () => {
-
-        projectCards.forEach(card => {
-
-            const cardTop = card.getBoundingClientRect().top;
-            const trigger = window.innerHeight - 100;
-
-            if (cardTop < trigger) {
-                card.style.opacity = "1";
-                card.style.transform = "translateY(0)";
-                card.style.transition = "0.8s ease";
-            }
-        });
-    };
-
-    window.addEventListener("scroll", revealCards);
-    revealCards();
-
-    // ================= VIDEO MODAL (FIXED) =================
+    // ================= VIDEO MODAL =================
 
     const modal = document.getElementById("videoModal");
     const modalVideo = document.getElementById("modalVideo");
     const closeVideo = document.getElementById("closeVideo");
 
-    projectCards.forEach(card => {
+    document.querySelectorAll(".project-card").forEach(card => {
 
         card.addEventListener("click", (e) => {
 
-            const videoSrc = card.getAttribute("data-video");
+            const videoSrc = card.dataset.video;
 
-            // 👉 IMPORTANT : si pas de vidéo, on laisse comportement normal
             if (!videoSrc) return;
 
             e.preventDefault();
@@ -74,71 +20,58 @@ document.addEventListener("DOMContentLoaded", () => {
             modal.classList.add("active");
             modalVideo.play();
         });
+
     });
 
     function closeModal() {
+
         modal.classList.remove("active");
+
         modalVideo.pause();
-        modalVideo.src = "";
+        modalVideo.removeAttribute("src");
+        modalVideo.load();
     }
 
-    if (closeVideo) {
-        closeVideo.addEventListener("click", closeModal);
-    }
+    closeVideo?.addEventListener("click", closeModal);
 
-    if (modal) {
-        modal.addEventListener("click", (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-    }
-	
-	
+    modal?.addEventListener("click", (e) => {
 
-    // ================= HEADER EFFECT =================
-
-    const header = document.querySelector("header");
-
-    window.addEventListener("scroll", () => {
-
-        if (window.scrollY > 50) {
-            header.style.background = "rgba(0,0,0,0.95)";
-            header.style.boxShadow = "0 5px 25px rgba(0,0,0,0.5)";
-        } else {
-            header.style.background = "rgba(0,0,0,0.8)";
-            header.style.boxShadow = "none";
+        if (e.target === modal) {
+            closeModal();
         }
+
     });
 
-    // ================= HERO PARALLAX =================
+    // ================= PROJECTS REVEAL =================
 
-    const heroImage = document.querySelector(".hero-image img");
+    const projectCards = document.querySelectorAll(".project-card");
 
-    if (heroImage) {
+    const projectObserver = new IntersectionObserver((entries, observer) => {
 
-        window.addEventListener("mousemove", (e) => {
+        entries.forEach(entry => {
 
-            const x = (window.innerWidth / 2 - e.clientX) / 40;
-            const y = (window.innerHeight / 2 - e.clientY) / 40;
+            if (!entry.isIntersecting) return;
 
-            heroImage.style.transform = `translate(${x}px, ${y}px) scale(1.03)`;
-        });
-    }
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
 
-    // ================= BUTTON EFFECT =================
+            observer.unobserve(entry.target);
 
-    document.querySelectorAll(".btn").forEach(button => {
-
-        button.addEventListener("mouseenter", () => {
-            button.style.transform = "translateY(-4px)";
         });
 
-        button.addEventListener("mouseleave", () => {
-            button.style.transform = "translateY(0)";
-        });
+    }, {
+        threshold: 0.15
     });
 
+    projectCards.forEach(card => {
+
+        card.style.opacity = "0";
+        card.style.transform = "translateY(30px)";
+        card.style.transition = "0.6s ease";
+
+        projectObserver.observe(card);
+
+    });
 
     // ================= SKILLS =================
 
@@ -148,52 +81,58 @@ document.addEventListener("DOMContentLoaded", () => {
 
         entries.forEach(entry => {
 
-            if (entry.isIntersecting) {
+            if (!entry.isIntersecting) return;
 
-                const bar = entry.target;
-                const finalWidth = bar.style.width;
+            const bar = entry.target;
+            const width = bar.style.width;
 
-                bar.style.width = "0";
+            bar.style.width = "0";
 
-                setTimeout(() => {
-                    bar.style.transition = "1.5s ease";
-                    bar.style.width = finalWidth;
-                }, 200);
+            requestAnimationFrame(() => {
 
-                observer.unobserve(bar);
-            }
+                bar.style.transition = "1.2s ease";
+                bar.style.width = width;
+
+            });
+
+            observer.unobserve(bar);
+
         });
 
-    }, { threshold: 0.3 });
+    }, {
+        threshold: 0.3
+    });
 
     skillBars.forEach(bar => skillsObserver.observe(bar));
 
-    // ================= ACTIVE MENU =================
+    // ================= MENU ACTIF =================
 
     const sections = document.querySelectorAll("section[id]");
     const navLinks = document.querySelectorAll("nav a");
 
-    window.addEventListener("scroll", () => {
+    const sectionObserver = new IntersectionObserver((entries) => {
 
-        let current = "";
+        entries.forEach(entry => {
 
-        sections.forEach(section => {
+            if (!entry.isIntersecting) return;
 
-            const sectionTop = section.offsetTop - 150;
+            const currentId = entry.target.id;
 
-            if (window.scrollY >= sectionTop) {
-                current = section.id;
-            }
+            navLinks.forEach(link => {
+
+                link.classList.toggle(
+                    "active",
+                    link.getAttribute("href") === `#${currentId}`
+                );
+
+            });
+
         });
 
-        navLinks.forEach(link => {
-
-            link.classList.remove("active");
-
-            if (link.getAttribute("href") === "#" + current) {
-                link.classList.add("active");
-            }
-        });
+    }, {
+        threshold: 0.5
     });
+
+    sections.forEach(section => sectionObserver.observe(section));
 
 });
