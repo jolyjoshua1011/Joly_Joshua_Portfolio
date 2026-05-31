@@ -1,2 +1,6 @@
 qxwEhxp!#LVdGn6
 https://joly-joshua-portfolio-bmcg.vercel.app/
+mettre a jour le site :
+git push -u origin main
+git commit -m "modif"
+git push
