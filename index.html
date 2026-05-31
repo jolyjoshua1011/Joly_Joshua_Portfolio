@@ -1,136 +1,293 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <title>Joly Joshua | Graphic Designer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Joshua Joly | Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="cursor"></div>
+    <header>
 
-<nav>
-    <h1>JOLY JOSHUA</h1>
-    <ul>
-        <li>Accueil</li>
-        <li>Portfolio</li>
-        <li>Services</li>
-        <li>Contact</li>
-    </ul>
-</nav>
+        <div class="logo">
 
-<section class="hero">
-    <img src="img/JJ_logo.png" alt="Logo Joly Joshua">
-    <h2 class="glitch" data-text="Graphic Designer">Graphic Designer</h2>
-    <p>Créateur d’identités visuelles modernes & futuristes</p>
-    <button class="btn">Découvrir</button>
-</section>
+            <img src="img/jojo.png" alt="Photo de Joshua Joly">
 
-<section>
-    <h2 class="section-title">Portfolio</h2>
-    <div class="grid">
-        <div class="card">Projet 01</div>
-        <div class="card">Projet 02</div>
-        <div class="card">Projet 03</div>
-        <div class="card">Projet 04</div>
+            <div class="logo-text">
+                <h1>JOSHUA JOLY</h1>
+                <p>Étudiant en Infographie</p>
+            </div>
+
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <section class="hero" id="home">
+
+        <div class="hero-text">
+
+            <h2>
+                JOSHUA<br>
+                <span>JOLY</span>
+            </h2>
+
+            <h3 class="hero-subtitle">
+                Étudiant en Infographie & Designer Graphique
+            </h3>
+
+            <p>
+                Passionné par le design graphique, la communication visuelle et les
+                médias numériques. Je développe mes compétences en identité visuelle,
+                création de contenus digitaux, montage vidéo et conception graphique
+                à travers différents projets créatifs.
+            </p>
+
+            <a href="#projects" class="btn">
+                Voir mes projets
+            </a>
+
+        </div>
+
+        <div class="hero-image">
+            <img src="img/jojo.png" alt="Joshua Joly">
+        </div>
+
+    </section>
+
+    <section class="projects" id="projects">
+
+        <h2 class="section-title">PROJETS</h2>
+
+        <div class="project-grid">
+
+            <!-- Projet 1 -->
+
+            <a href="https://www.figma.com/proto/ESK36uNirXW11US85Xijpw/HenriRousseauWebsite?node-id=0-1&t=y9ooq51TtBK4yQyx-1"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="project-card">
+
+                <img src="img/HRweb.png" alt="Site Henri Rousseau">
+
+                <div class="project-overlay">
+
+                    <div class="project-content">
+
+                        <h3 class="project-title">Site d'exposition</h3>
+
+                        <p class="project-description">
+                            Création d'un site web sur Figma présentant une exposition
+                            des œuvres d'Henri Rousseau au Musée de l'Orangerie.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+            <!-- Projet 2 -->
+
+            <a href="https://www.behance.net/gallery/236175987/JJ-Logo-Design" target="_blank" class="project-card">
+
+                <img src="img/jojo.png" alt="Logo personnel">
+
+                <div class="project-overlay">
+
+                    <div class="project-content">
+
+                        <h3 class="project-title">Logo personnel</h3>
+
+                        <p class="project-description">
+                            Création d'un logo personnel destiné à représenter mon
+                            identité visuelle en tant qu'infographiste.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+            <!-- Projet 3 -->
+
+            <a href="#" class="project-card" data-video="video/AmuletBandeSon.mp4">
+
+    <img src="img/Amulet.jpg" alt="Amulet">
+
+    <div class="project-overlay">
+        <div class="project-content">
+            <h3 class="project-title">Amulet</h3>
+            <p class="project-description">
+                Animation de logo pour un webtoon.
+            </p>
+        </div>
     </div>
-</section>
 
-<section>
-    <h2 class="section-title">Services</h2>
-    <div class="grid">
-        <div class="card">Logo & Branding</div>
-        <div class="card">Design Social Media</div>
-        <div class="card">Affiches & Print</div>
+</a>
+
+<div class="video-modal" id="videoModal">
+
+    <div class="video-wrapper">
+        <video id="modalVideo" controls autoplay></video>
+        <span class="close-video" id="closeVideo">✕</span>
     </div>
-</section>
 
-<section>
-    <h2 class="section-title">Contact</h2>
-    <form>
-        <input type="text" placeholder="Votre nom">
-        <input type="email" placeholder="Votre email">
-        <textarea rows="5" placeholder="Votre message"></textarea>
-        <button class="btn">Envoyer</button>
-    </form>
-</section>
+</div>
 
-<footer>
-    © 2026 Joly Joshua - Tous droits réservés
-</footer>
+		<!-- Projet 4 -->
 
-<script>
+		<a href="https://www.behance.net/gallery/239911355/Le-point-senteur" target="_blank" class="project-card">
 
-/* Scroll animation */
-const cards = document.querySelectorAll(".card");
+			<img src="img/Lepointsenteur.jpg"
+				alt="Projet 4">
 
-window.addEventListener("scroll", () => {
-    cards.forEach(card => {
-        const position = card.getBoundingClientRect().top;
-        const screenHeight = window.innerHeight;
+			<div class="project-overlay">
 
-        if(position < screenHeight - 100){
-            card.classList.add("show");
-        }
-    });
-});
+				<div class="project-content">
 
-/* Curseur personnalisé */
-const cursor = document.querySelector(".cursor");
+					<h3 class="project-title">Le point senteur</h3>
 
-document.addEventListener("mousemove", e => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-});
+					<p class="project-description">
+					   Atelier de groupe consistant a créer une identité visuelle pour une boutique de bougie
+					   (chargé d'une grande partie du behance et des éléments graphiques).
+					</p>
 
-/* Particules cyber */
-const canvas = document.createElement("canvas");
-document.body.appendChild(canvas);
-canvas.style.position = "fixed";
-canvas.style.top = 0;
-canvas.style.left = 0;
-canvas.style.zIndex = "-1";
+				</div>
 
-const ctx = canvas.getContext("2d");
+			</div>
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+		</a>
 
-let particles = [];
+		<!-- Projet 5 -->
 
-for(let i=0;i<80;i++){
-    particles.push({
-        x: Math.random()*canvas.width,
-        y: Math.random()*canvas.height,
-        radius: Math.random()*2,
-        dx: (Math.random()-0.5)*1,
-        dy: (Math.random()-0.5)*1
-    });
-}
+		<a href="https://www.figma.com/proto/q6vPZLYTocXRT70A39iIfw/AnecDO-It?node-id=11-737&t=bkV8ZDnO6PKWfIgl-1" target="_blank" class="project-card">
 
-function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+			<img src="img/AnecDoIt.png"
+				alt="AnecDoIt">
 
-    ctx.fillStyle = "#7b00ff";
-    particles.forEach(p=>{
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
-        ctx.fill();
+			<div class="project-overlay">
 
-        p.x += p.dx;
-        p.y += p.dy;
+				<div class="project-content">
 
-        if(p.x<0 || p.x>canvas.width) p.dx*=-1;
-        if(p.y<0 || p.y>canvas.height) p.dy*=-1;
-    });
+					<h3 class="project-title">AnecDoit</h3>
 
-    requestAnimationFrame(animate);
-}
+					<p class="project-description">
+						Site de rencontre (concept, design, logo,...) créé lors d'un atelier de Workshop Web de 12h.
+					</p>
 
-animate();
+				</div>
 
-</script>
+			</div>
+
+		</a>
+
+    </section>
+
+    <section class="about" id="about">
+
+        <div class="about-text">
+
+            <h2>À PROPOS</h2>
+
+            <p>
+                Je suis étudiant en infographie et passionné par la création visuelle.
+                Ce portfolio présente mes réalisations académiques ainsi que mes
+                projets personnels. Mon objectif est de concevoir des créations
+                modernes, impactantes et adaptées aux besoins de chaque projet.
+            </p>
+
+        </div>
+
+        <div class="skills">
+
+            <div class="skill">
+                <h4>Adobe Photoshop</h4>
+                <div class="bar">
+                    <span style="width:70%"></span>
+                </div>
+            </div>
+
+            <div class="skill">
+                <h4>Adobe Illustrator</h4>
+                <div class="bar">
+                    <span style="width:75%"></span>
+                </div>
+            </div>
+
+            <div class="skill">
+                <h4>Adobe After Effects</h4>
+                <div class="bar">
+                    <span style="width:70%"></span>
+                </div>
+            </div>
+
+            <div class="skill">
+                <h4>Adobe Premiere Pro</h4>
+                <div class="bar">
+                    <span style="width:65%"></span>
+                </div>
+            </div>
+
+            <div class="skill">
+                <h4>Adobe Audition</h4>
+                <div class="bar">
+                    <span style="width:50%"></span>
+                </div>
+            </div>
+
+            <div class="skill">
+                <h4>Figma</h4>
+                <div class="bar">
+                    <span style="width:75%"></span>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="contact" id="contact">
+
+        <h2 class="section-title">CONTACT</h2>
+
+        <form>
+
+            <input type="text" placeholder="Votre nom" required>
+
+            <input type="email" placeholder="Votre email" required>
+
+            <textarea placeholder="Votre message" required></textarea>
+
+            <button type="submit">
+                Envoyer
+            </button>
+
+        </form>
+
+    </section>
+
+    <footer>
+        © 2026 - Joshua Joly | Portfolio
+    </footer>
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
